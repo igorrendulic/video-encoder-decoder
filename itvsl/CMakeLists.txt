@@ -16,8 +16,6 @@ pkg_check_modules(LIBAV REQUIRED IMPORTED_TARGET
     libavutil
 )
 
-# find_package( hiredis REQUIRED)
-
 list(APPEND SOURCES
     video_log.cpp
     video_log.h
@@ -37,7 +35,6 @@ target_link_libraries(itvsl
     # ${OpenCV_LIBS}
     proto ${PROTOBUF_LIBRARY}
     PkgConfig::LIBAV
-    # hiredis
 )
 
 install(TARGETS itvsl DESTINATION lib)
