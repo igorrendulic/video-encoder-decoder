@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package itvsl.protocol.v1beta1;
+
+
+// This structure stores compressed data.
+// For video, it should typically contain one compressed frame. 
+// For audio it may contain several compressed frames. 
+// Encoders are allowed to output empty packets, with no compressed data, containing only side data (e.g. to update some stream parameters at the end of encoding).
+message CPacket {
+    int64 pts  = 1; // Presentation timestamp in AVStream->time_base units; the time at which the decompressed packet will be presented to the user.
+    int64 dts = 2; // Decompression timestamp in AVStream->time_base units; the time at which the packet is decompressed.
+    bytes data = 3; 
+    int32 size = 4;
+    int32 stream_id = 5;
+    int32 flags = 6; // A combination of AV_PKT_FLAG values.
+    bytes side_data = 7;
+    int32 side_data_elems = 8;
+    int64 duration = 9; // Duration of this packet in AVStream->time_base units, 0 if unknown.
+    int64 pos = 10; // byte position of stream, -1 if unknown
+    string meta = 11; // custom metadata if needed
+    bytes raw_bgr24 = 12; // raw bgr image
+}
+
+// Video Streaming messages
+message ShapeProto {
+    message Dim {
+        // Size of image in that dimension (-1 means unknown dimension)
+        int64 size = 1;
+        // optional name of image dimension
+        string name = 2;
+    }
+
+    repeated Dim dim = 2;
+}
+
+message VideoFrame {
+    int64 width = 1;
+    int64 height = 2;
+    bytes data = 3;
+    int64 timestamp = 4;
+    bool is_keyframe = 5;
+    int64 pts = 6;
+    int64 dts = 7;
+    string frame_type = 8;
+    bool is_corrupt = 9;
+    double time_base = 10;
+    ShapeProto shape = 11;
+    string device_id = 12;
+    int64 packet = 13;
+    int64 keyframe = 14;
+    bytes extradata = 15;
+    string codec_name = 16;
+    string pix_fmt = 17;
+}
+
+// VideoCodec information about the stream
+message VideoCodec {
+    string name = 1;
+    int32 width = 2;
+    int32 height = 3;
+    string pix_fmt = 4;
+    bytes extradata = 5;
+    int32 extradata_size = 6;
+    string long_name = 7;
+}
