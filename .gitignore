@@ -18,3 +18,5 @@ _deps
 *.code-workspace
 
 build/
+
+main.cpp.rtsp
