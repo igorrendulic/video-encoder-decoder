@@ -16,6 +16,9 @@ pkg_check_modules(LIBAV REQUIRED IMPORTED_TARGET
     libavutil
 )
 
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR})
+find_package( hiredis REQUIRED )
+
 list(APPEND SOURCES
     video_log.cpp
     video_log.h
@@ -35,6 +38,7 @@ target_link_libraries(itvsl
     # ${OpenCV_LIBS}
     proto ${PROTOBUF_LIBRARY}
     PkgConfig::LIBAV
+    ${HIREDIS_LIBRARIES} 
 )
 
 install(TARGETS itvsl DESTINATION lib)
