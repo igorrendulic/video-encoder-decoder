@@ -281,8 +281,6 @@ VideoFrame *LibItvsl::bgrToVideoFrame(AVPacket *pPacket, AVFrame *pFrame, AVFram
     char *buf = new char[len];
     dstFrame->SerializeToArray(buf, len);
 
-    printf("DTS frame: %d:%d\n", dstFrame->width(), dstFrame->height());
-
     // TODO: store to fifo pipe serialized protobuf file!
     // redReply = (redisReply *)redisCommand(redisConn, "xadd %s MAXLEN ~ 10 * %s %b", deviceID, "data", buf, len);
     // printf("KEY: %s\n", redReply->str);
