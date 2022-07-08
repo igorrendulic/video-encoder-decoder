@@ -70,7 +70,7 @@ int main()
     logging("***************************************************************************************");
     logging("*        Tool : Igor Tech Media Streams                                               *");
     logging("*      Author : Igor Rendulic (https://igor.techology)                                *");
-    logging("*   Used Libs : FFmpeg/libav                                                          *");
+    logging("*   Used Libs : libav/hiredis                                                         *");
     logging("***************************************************************************************");
     logging("---------------------------------------------------------------------------------------");
     logging("");
@@ -211,9 +211,10 @@ int main()
     {
         av_frame_free(&pFrame);
     }
-    // if (pFrameBGR != NULL) {
-    //     av_frame_free(&pFrameBGR);
-    // }
+    if (pFrameBGR != NULL)
+    {
+        av_frame_free(&pFrameBGR);
+    }
 
     delete vsl;
 

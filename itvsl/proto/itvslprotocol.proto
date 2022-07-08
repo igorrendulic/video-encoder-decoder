@@ -19,7 +19,6 @@ message CPacket {
     int64 duration = 9; // Duration of this packet in AVStream->time_base units, 0 if unknown.
     int64 pos = 10; // byte position of stream, -1 if unknown
     string meta = 11; // custom metadata if needed
-    bytes raw_bgr24 = 12; // raw bgr image
 }
 
 // Video Streaming messages
@@ -37,21 +36,23 @@ message ShapeProto {
 message VideoFrame {
     int64 width = 1;
     int64 height = 2;
-    bytes data = 3;
-    int64 timestamp = 4;
-    bool is_keyframe = 5;
-    int64 pts = 6;
-    int64 dts = 7;
-    string frame_type = 8;
-    bool is_corrupt = 9;
-    double time_base = 10;
-    ShapeProto shape = 11;
-    string device_id = 12;
-    int64 packet = 13;
-    int64 keyframe = 14;
-    bytes extradata = 15;
-    string codec_name = 16;
-    string pix_fmt = 17;
+    CPacket avPacket = 3;
+    bytes decoded_video_frame = 4;
+    bytes decoded_audio_frame = 5;
+    int64 timestamp = 6;
+    bool is_keyframe = 7;
+    int64 pts = 8;
+    int64 dts = 9;
+    string frame_type = 10;
+    bool is_corrupt = 11;
+    double time_base = 12;
+    ShapeProto shape = 13;
+    string device_id = 14;
+    int64 packet = 15;
+    int64 keyframe = 16;
+    bytes extradata = 17;
+    string codec_name = 18;
+    string pix_fmt = 19;
 }
 
 // VideoCodec information about the stream

@@ -210,20 +210,6 @@ class CPacket : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::std::string* release_meta();
   void set_allocated_meta(::std::string* meta);
 
-  // bytes raw_bgr24 = 12;
-  void clear_raw_bgr24();
-  static const int kRawBgr24FieldNumber = 12;
-  const ::std::string& raw_bgr24() const;
-  void set_raw_bgr24(const ::std::string& value);
-  #if LANG_CXX11
-  void set_raw_bgr24(::std::string&& value);
-  #endif
-  void set_raw_bgr24(const char* value);
-  void set_raw_bgr24(const void* value, size_t size);
-  ::std::string* mutable_raw_bgr24();
-  ::std::string* release_raw_bgr24();
-  void set_allocated_raw_bgr24(::std::string* raw_bgr24);
-
   // int64 pts = 1;
   void clear_pts();
   static const int kPtsFieldNumber = 1;
@@ -279,7 +265,6 @@ class CPacket : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::google::protobuf::internal::ArenaStringPtr data_;
   ::google::protobuf::internal::ArenaStringPtr side_data_;
   ::google::protobuf::internal::ArenaStringPtr meta_;
-  ::google::protobuf::internal::ArenaStringPtr raw_bgr24_;
   ::google::protobuf::int64 pts_;
   ::google::protobuf::int64 dts_;
   ::google::protobuf::int32 size_;
@@ -609,23 +594,37 @@ class VideoFrame : public ::google::protobuf::Message /* @@protoc_insertion_poin
 
   // accessors -------------------------------------------------------
 
-  // bytes data = 3;
-  void clear_data();
-  static const int kDataFieldNumber = 3;
-  const ::std::string& data() const;
-  void set_data(const ::std::string& value);
+  // bytes decoded_video_frame = 4;
+  void clear_decoded_video_frame();
+  static const int kDecodedVideoFrameFieldNumber = 4;
+  const ::std::string& decoded_video_frame() const;
+  void set_decoded_video_frame(const ::std::string& value);
   #if LANG_CXX11
-  void set_data(::std::string&& value);
+  void set_decoded_video_frame(::std::string&& value);
   #endif
-  void set_data(const char* value);
-  void set_data(const void* value, size_t size);
-  ::std::string* mutable_data();
-  ::std::string* release_data();
-  void set_allocated_data(::std::string* data);
+  void set_decoded_video_frame(const char* value);
+  void set_decoded_video_frame(const void* value, size_t size);
+  ::std::string* mutable_decoded_video_frame();
+  ::std::string* release_decoded_video_frame();
+  void set_allocated_decoded_video_frame(::std::string* decoded_video_frame);
 
-  // string frame_type = 8;
+  // bytes decoded_audio_frame = 5;
+  void clear_decoded_audio_frame();
+  static const int kDecodedAudioFrameFieldNumber = 5;
+  const ::std::string& decoded_audio_frame() const;
+  void set_decoded_audio_frame(const ::std::string& value);
+  #if LANG_CXX11
+  void set_decoded_audio_frame(::std::string&& value);
+  #endif
+  void set_decoded_audio_frame(const char* value);
+  void set_decoded_audio_frame(const void* value, size_t size);
+  ::std::string* mutable_decoded_audio_frame();
+  ::std::string* release_decoded_audio_frame();
+  void set_allocated_decoded_audio_frame(::std::string* decoded_audio_frame);
+
+  // string frame_type = 10;
   void clear_frame_type();
-  static const int kFrameTypeFieldNumber = 8;
+  static const int kFrameTypeFieldNumber = 10;
   const ::std::string& frame_type() const;
   void set_frame_type(const ::std::string& value);
   #if LANG_CXX11
@@ -637,9 +636,9 @@ class VideoFrame : public ::google::protobuf::Message /* @@protoc_insertion_poin
   ::std::string* release_frame_type();
   void set_allocated_frame_type(::std::string* frame_type);
 
-  // string device_id = 12;
+  // string device_id = 14;
   void clear_device_id();
-  static const int kDeviceIdFieldNumber = 12;
+  static const int kDeviceIdFieldNumber = 14;
   const ::std::string& device_id() const;
   void set_device_id(const ::std::string& value);
   #if LANG_CXX11
@@ -651,9 +650,9 @@ class VideoFrame : public ::google::protobuf::Message /* @@protoc_insertion_poin
   ::std::string* release_device_id();
   void set_allocated_device_id(::std::string* device_id);
 
-  // bytes extradata = 15;
+  // bytes extradata = 17;
   void clear_extradata();
-  static const int kExtradataFieldNumber = 15;
+  static const int kExtradataFieldNumber = 17;
   const ::std::string& extradata() const;
   void set_extradata(const ::std::string& value);
   #if LANG_CXX11
@@ -665,9 +664,9 @@ class VideoFrame : public ::google::protobuf::Message /* @@protoc_insertion_poin
   ::std::string* release_extradata();
   void set_allocated_extradata(::std::string* extradata);
 
-  // string codec_name = 16;
+  // string codec_name = 18;
   void clear_codec_name();
-  static const int kCodecNameFieldNumber = 16;
+  static const int kCodecNameFieldNumber = 18;
   const ::std::string& codec_name() const;
   void set_codec_name(const ::std::string& value);
   #if LANG_CXX11
@@ -679,9 +678,9 @@ class VideoFrame : public ::google::protobuf::Message /* @@protoc_insertion_poin
   ::std::string* release_codec_name();
   void set_allocated_codec_name(::std::string* codec_name);
 
-  // string pix_fmt = 17;
+  // string pix_fmt = 19;
   void clear_pix_fmt();
-  static const int kPixFmtFieldNumber = 17;
+  static const int kPixFmtFieldNumber = 19;
   const ::std::string& pix_fmt() const;
   void set_pix_fmt(const ::std::string& value);
   #if LANG_CXX11
@@ -693,10 +692,22 @@ class VideoFrame : public ::google::protobuf::Message /* @@protoc_insertion_poin
   ::std::string* release_pix_fmt();
   void set_allocated_pix_fmt(::std::string* pix_fmt);
 
-  // .itvsl.protocol.v1beta1.ShapeProto shape = 11;
+  // .itvsl.protocol.v1beta1.CPacket avPacket = 3;
+  bool has_avpacket() const;
+  void clear_avpacket();
+  static const int kAvPacketFieldNumber = 3;
+  private:
+  const ::itvsl::protocol::v1beta1::CPacket& _internal_avpacket() const;
+  public:
+  const ::itvsl::protocol::v1beta1::CPacket& avpacket() const;
+  ::itvsl::protocol::v1beta1::CPacket* release_avpacket();
+  ::itvsl::protocol::v1beta1::CPacket* mutable_avpacket();
+  void set_allocated_avpacket(::itvsl::protocol::v1beta1::CPacket* avpacket);
+
+  // .itvsl.protocol.v1beta1.ShapeProto shape = 13;
   bool has_shape() const;
   void clear_shape();
-  static const int kShapeFieldNumber = 11;
+  static const int kShapeFieldNumber = 13;
   private:
   const ::itvsl::protocol::v1beta1::ShapeProto& _internal_shape() const;
   public:
@@ -717,51 +728,51 @@ class VideoFrame : public ::google::protobuf::Message /* @@protoc_insertion_poin
   ::google::protobuf::int64 height() const;
   void set_height(::google::protobuf::int64 value);
 
-  // int64 timestamp = 4;
+  // int64 timestamp = 6;
   void clear_timestamp();
-  static const int kTimestampFieldNumber = 4;
+  static const int kTimestampFieldNumber = 6;
   ::google::protobuf::int64 timestamp() const;
   void set_timestamp(::google::protobuf::int64 value);
 
-  // int64 pts = 6;
+  // int64 pts = 8;
   void clear_pts();
-  static const int kPtsFieldNumber = 6;
+  static const int kPtsFieldNumber = 8;
   ::google::protobuf::int64 pts() const;
   void set_pts(::google::protobuf::int64 value);
 
-  // int64 dts = 7;
+  // int64 dts = 9;
   void clear_dts();
-  static const int kDtsFieldNumber = 7;
+  static const int kDtsFieldNumber = 9;
   ::google::protobuf::int64 dts() const;
   void set_dts(::google::protobuf::int64 value);
 
-  // double time_base = 10;
+  // double time_base = 12;
   void clear_time_base();
-  static const int kTimeBaseFieldNumber = 10;
+  static const int kTimeBaseFieldNumber = 12;
   double time_base() const;
   void set_time_base(double value);
 
-  // int64 packet = 13;
+  // int64 packet = 15;
   void clear_packet();
-  static const int kPacketFieldNumber = 13;
+  static const int kPacketFieldNumber = 15;
   ::google::protobuf::int64 packet() const;
   void set_packet(::google::protobuf::int64 value);
 
-  // int64 keyframe = 14;
+  // int64 keyframe = 16;
   void clear_keyframe();
-  static const int kKeyframeFieldNumber = 14;
+  static const int kKeyframeFieldNumber = 16;
   ::google::protobuf::int64 keyframe() const;
   void set_keyframe(::google::protobuf::int64 value);
 
-  // bool is_keyframe = 5;
+  // bool is_keyframe = 7;
   void clear_is_keyframe();
-  static const int kIsKeyframeFieldNumber = 5;
+  static const int kIsKeyframeFieldNumber = 7;
   bool is_keyframe() const;
   void set_is_keyframe(bool value);
 
-  // bool is_corrupt = 9;
+  // bool is_corrupt = 11;
   void clear_is_corrupt();
-  static const int kIsCorruptFieldNumber = 9;
+  static const int kIsCorruptFieldNumber = 11;
   bool is_corrupt() const;
   void set_is_corrupt(bool value);
 
@@ -769,12 +780,14 @@ class VideoFrame : public ::google::protobuf::Message /* @@protoc_insertion_poin
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::internal::ArenaStringPtr data_;
+  ::google::protobuf::internal::ArenaStringPtr decoded_video_frame_;
+  ::google::protobuf::internal::ArenaStringPtr decoded_audio_frame_;
   ::google::protobuf::internal::ArenaStringPtr frame_type_;
   ::google::protobuf::internal::ArenaStringPtr device_id_;
   ::google::protobuf::internal::ArenaStringPtr extradata_;
   ::google::protobuf::internal::ArenaStringPtr codec_name_;
   ::google::protobuf::internal::ArenaStringPtr pix_fmt_;
+  ::itvsl::protocol::v1beta1::CPacket* avpacket_;
   ::itvsl::protocol::v1beta1::ShapeProto* shape_;
   ::google::protobuf::int64 width_;
   ::google::protobuf::int64 height_;
@@ -1248,59 +1261,6 @@ inline void CPacket::set_allocated_meta(::std::string* meta) {
   // @@protoc_insertion_point(field_set_allocated:itvsl.protocol.v1beta1.CPacket.meta)
 }
 
-// bytes raw_bgr24 = 12;
-inline void CPacket::clear_raw_bgr24() {
-  raw_bgr24_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline const ::std::string& CPacket::raw_bgr24() const {
-  // @@protoc_insertion_point(field_get:itvsl.protocol.v1beta1.CPacket.raw_bgr24)
-  return raw_bgr24_.GetNoArena();
-}
-inline void CPacket::set_raw_bgr24(const ::std::string& value) {
-  
-  raw_bgr24_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:itvsl.protocol.v1beta1.CPacket.raw_bgr24)
-}
-#if LANG_CXX11
-inline void CPacket::set_raw_bgr24(::std::string&& value) {
-  
-  raw_bgr24_.SetNoArena(
-    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:itvsl.protocol.v1beta1.CPacket.raw_bgr24)
-}
-#endif
-inline void CPacket::set_raw_bgr24(const char* value) {
-  GOOGLE_DCHECK(value != NULL);
-  
-  raw_bgr24_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:itvsl.protocol.v1beta1.CPacket.raw_bgr24)
-}
-inline void CPacket::set_raw_bgr24(const void* value, size_t size) {
-  
-  raw_bgr24_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:itvsl.protocol.v1beta1.CPacket.raw_bgr24)
-}
-inline ::std::string* CPacket::mutable_raw_bgr24() {
-  
-  // @@protoc_insertion_point(field_mutable:itvsl.protocol.v1beta1.CPacket.raw_bgr24)
-  return raw_bgr24_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline ::std::string* CPacket::release_raw_bgr24() {
-  // @@protoc_insertion_point(field_release:itvsl.protocol.v1beta1.CPacket.raw_bgr24)
-  
-  return raw_bgr24_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void CPacket::set_allocated_raw_bgr24(::std::string* raw_bgr24) {
-  if (raw_bgr24 != NULL) {
-    
-  } else {
-    
-  }
-  raw_bgr24_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), raw_bgr24);
-  // @@protoc_insertion_point(field_set_allocated:itvsl.protocol.v1beta1.CPacket.raw_bgr24)
-}
-
 // -------------------------------------------------------------------
 
 // ShapeProto_Dim
@@ -1438,60 +1398,167 @@ inline void VideoFrame::set_height(::google::protobuf::int64 value) {
   // @@protoc_insertion_point(field_set:itvsl.protocol.v1beta1.VideoFrame.height)
 }
 
-// bytes data = 3;
-inline void VideoFrame::clear_data() {
-  data_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+// .itvsl.protocol.v1beta1.CPacket avPacket = 3;
+inline bool VideoFrame::has_avpacket() const {
+  return this != internal_default_instance() && avpacket_ != NULL;
 }
-inline const ::std::string& VideoFrame::data() const {
-  // @@protoc_insertion_point(field_get:itvsl.protocol.v1beta1.VideoFrame.data)
-  return data_.GetNoArena();
+inline void VideoFrame::clear_avpacket() {
+  if (GetArenaNoVirtual() == NULL && avpacket_ != NULL) {
+    delete avpacket_;
+  }
+  avpacket_ = NULL;
 }
-inline void VideoFrame::set_data(const ::std::string& value) {
+inline const ::itvsl::protocol::v1beta1::CPacket& VideoFrame::_internal_avpacket() const {
+  return *avpacket_;
+}
+inline const ::itvsl::protocol::v1beta1::CPacket& VideoFrame::avpacket() const {
+  const ::itvsl::protocol::v1beta1::CPacket* p = avpacket_;
+  // @@protoc_insertion_point(field_get:itvsl.protocol.v1beta1.VideoFrame.avPacket)
+  return p != NULL ? *p : *reinterpret_cast<const ::itvsl::protocol::v1beta1::CPacket*>(
+      &::itvsl::protocol::v1beta1::_CPacket_default_instance_);
+}
+inline ::itvsl::protocol::v1beta1::CPacket* VideoFrame::release_avpacket() {
+  // @@protoc_insertion_point(field_release:itvsl.protocol.v1beta1.VideoFrame.avPacket)
   
-  data_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:itvsl.protocol.v1beta1.VideoFrame.data)
+  ::itvsl::protocol::v1beta1::CPacket* temp = avpacket_;
+  avpacket_ = NULL;
+  return temp;
 }
-#if LANG_CXX11
-inline void VideoFrame::set_data(::std::string&& value) {
+inline ::itvsl::protocol::v1beta1::CPacket* VideoFrame::mutable_avpacket() {
   
-  data_.SetNoArena(
-    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:itvsl.protocol.v1beta1.VideoFrame.data)
+  if (avpacket_ == NULL) {
+    auto* p = CreateMaybeMessage<::itvsl::protocol::v1beta1::CPacket>(GetArenaNoVirtual());
+    avpacket_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:itvsl.protocol.v1beta1.VideoFrame.avPacket)
+  return avpacket_;
 }
-#endif
-inline void VideoFrame::set_data(const char* value) {
-  GOOGLE_DCHECK(value != NULL);
-  
-  data_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:itvsl.protocol.v1beta1.VideoFrame.data)
-}
-inline void VideoFrame::set_data(const void* value, size_t size) {
-  
-  data_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:itvsl.protocol.v1beta1.VideoFrame.data)
-}
-inline ::std::string* VideoFrame::mutable_data() {
-  
-  // @@protoc_insertion_point(field_mutable:itvsl.protocol.v1beta1.VideoFrame.data)
-  return data_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline ::std::string* VideoFrame::release_data() {
-  // @@protoc_insertion_point(field_release:itvsl.protocol.v1beta1.VideoFrame.data)
-  
-  return data_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void VideoFrame::set_allocated_data(::std::string* data) {
-  if (data != NULL) {
+inline void VideoFrame::set_allocated_avpacket(::itvsl::protocol::v1beta1::CPacket* avpacket) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete avpacket_;
+  }
+  if (avpacket) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      avpacket = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, avpacket, submessage_arena);
+    }
     
   } else {
     
   }
-  data_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), data);
-  // @@protoc_insertion_point(field_set_allocated:itvsl.protocol.v1beta1.VideoFrame.data)
+  avpacket_ = avpacket;
+  // @@protoc_insertion_point(field_set_allocated:itvsl.protocol.v1beta1.VideoFrame.avPacket)
 }
 
-// int64 timestamp = 4;
+// bytes decoded_video_frame = 4;
+inline void VideoFrame::clear_decoded_video_frame() {
+  decoded_video_frame_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& VideoFrame::decoded_video_frame() const {
+  // @@protoc_insertion_point(field_get:itvsl.protocol.v1beta1.VideoFrame.decoded_video_frame)
+  return decoded_video_frame_.GetNoArena();
+}
+inline void VideoFrame::set_decoded_video_frame(const ::std::string& value) {
+  
+  decoded_video_frame_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:itvsl.protocol.v1beta1.VideoFrame.decoded_video_frame)
+}
+#if LANG_CXX11
+inline void VideoFrame::set_decoded_video_frame(::std::string&& value) {
+  
+  decoded_video_frame_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:itvsl.protocol.v1beta1.VideoFrame.decoded_video_frame)
+}
+#endif
+inline void VideoFrame::set_decoded_video_frame(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  decoded_video_frame_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:itvsl.protocol.v1beta1.VideoFrame.decoded_video_frame)
+}
+inline void VideoFrame::set_decoded_video_frame(const void* value, size_t size) {
+  
+  decoded_video_frame_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:itvsl.protocol.v1beta1.VideoFrame.decoded_video_frame)
+}
+inline ::std::string* VideoFrame::mutable_decoded_video_frame() {
+  
+  // @@protoc_insertion_point(field_mutable:itvsl.protocol.v1beta1.VideoFrame.decoded_video_frame)
+  return decoded_video_frame_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* VideoFrame::release_decoded_video_frame() {
+  // @@protoc_insertion_point(field_release:itvsl.protocol.v1beta1.VideoFrame.decoded_video_frame)
+  
+  return decoded_video_frame_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VideoFrame::set_allocated_decoded_video_frame(::std::string* decoded_video_frame) {
+  if (decoded_video_frame != NULL) {
+    
+  } else {
+    
+  }
+  decoded_video_frame_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), decoded_video_frame);
+  // @@protoc_insertion_point(field_set_allocated:itvsl.protocol.v1beta1.VideoFrame.decoded_video_frame)
+}
+
+// bytes decoded_audio_frame = 5;
+inline void VideoFrame::clear_decoded_audio_frame() {
+  decoded_audio_frame_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& VideoFrame::decoded_audio_frame() const {
+  // @@protoc_insertion_point(field_get:itvsl.protocol.v1beta1.VideoFrame.decoded_audio_frame)
+  return decoded_audio_frame_.GetNoArena();
+}
+inline void VideoFrame::set_decoded_audio_frame(const ::std::string& value) {
+  
+  decoded_audio_frame_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:itvsl.protocol.v1beta1.VideoFrame.decoded_audio_frame)
+}
+#if LANG_CXX11
+inline void VideoFrame::set_decoded_audio_frame(::std::string&& value) {
+  
+  decoded_audio_frame_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:itvsl.protocol.v1beta1.VideoFrame.decoded_audio_frame)
+}
+#endif
+inline void VideoFrame::set_decoded_audio_frame(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  decoded_audio_frame_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:itvsl.protocol.v1beta1.VideoFrame.decoded_audio_frame)
+}
+inline void VideoFrame::set_decoded_audio_frame(const void* value, size_t size) {
+  
+  decoded_audio_frame_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:itvsl.protocol.v1beta1.VideoFrame.decoded_audio_frame)
+}
+inline ::std::string* VideoFrame::mutable_decoded_audio_frame() {
+  
+  // @@protoc_insertion_point(field_mutable:itvsl.protocol.v1beta1.VideoFrame.decoded_audio_frame)
+  return decoded_audio_frame_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* VideoFrame::release_decoded_audio_frame() {
+  // @@protoc_insertion_point(field_release:itvsl.protocol.v1beta1.VideoFrame.decoded_audio_frame)
+  
+  return decoded_audio_frame_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void VideoFrame::set_allocated_decoded_audio_frame(::std::string* decoded_audio_frame) {
+  if (decoded_audio_frame != NULL) {
+    
+  } else {
+    
+  }
+  decoded_audio_frame_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), decoded_audio_frame);
+  // @@protoc_insertion_point(field_set_allocated:itvsl.protocol.v1beta1.VideoFrame.decoded_audio_frame)
+}
+
+// int64 timestamp = 6;
 inline void VideoFrame::clear_timestamp() {
   timestamp_ = GOOGLE_LONGLONG(0);
 }
@@ -1505,7 +1572,7 @@ inline void VideoFrame::set_timestamp(::google::protobuf::int64 value) {
   // @@protoc_insertion_point(field_set:itvsl.protocol.v1beta1.VideoFrame.timestamp)
 }
 
-// bool is_keyframe = 5;
+// bool is_keyframe = 7;
 inline void VideoFrame::clear_is_keyframe() {
   is_keyframe_ = false;
 }
@@ -1519,7 +1586,7 @@ inline void VideoFrame::set_is_keyframe(bool value) {
   // @@protoc_insertion_point(field_set:itvsl.protocol.v1beta1.VideoFrame.is_keyframe)
 }
 
-// int64 pts = 6;
+// int64 pts = 8;
 inline void VideoFrame::clear_pts() {
   pts_ = GOOGLE_LONGLONG(0);
 }
@@ -1533,7 +1600,7 @@ inline void VideoFrame::set_pts(::google::protobuf::int64 value) {
   // @@protoc_insertion_point(field_set:itvsl.protocol.v1beta1.VideoFrame.pts)
 }
 
-// int64 dts = 7;
+// int64 dts = 9;
 inline void VideoFrame::clear_dts() {
   dts_ = GOOGLE_LONGLONG(0);
 }
@@ -1547,7 +1614,7 @@ inline void VideoFrame::set_dts(::google::protobuf::int64 value) {
   // @@protoc_insertion_point(field_set:itvsl.protocol.v1beta1.VideoFrame.dts)
 }
 
-// string frame_type = 8;
+// string frame_type = 10;
 inline void VideoFrame::clear_frame_type() {
   frame_type_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -1600,7 +1667,7 @@ inline void VideoFrame::set_allocated_frame_type(::std::string* frame_type) {
   // @@protoc_insertion_point(field_set_allocated:itvsl.protocol.v1beta1.VideoFrame.frame_type)
 }
 
-// bool is_corrupt = 9;
+// bool is_corrupt = 11;
 inline void VideoFrame::clear_is_corrupt() {
   is_corrupt_ = false;
 }
@@ -1614,7 +1681,7 @@ inline void VideoFrame::set_is_corrupt(bool value) {
   // @@protoc_insertion_point(field_set:itvsl.protocol.v1beta1.VideoFrame.is_corrupt)
 }
 
-// double time_base = 10;
+// double time_base = 12;
 inline void VideoFrame::clear_time_base() {
   time_base_ = 0;
 }
@@ -1628,7 +1695,7 @@ inline void VideoFrame::set_time_base(double value) {
   // @@protoc_insertion_point(field_set:itvsl.protocol.v1beta1.VideoFrame.time_base)
 }
 
-// .itvsl.protocol.v1beta1.ShapeProto shape = 11;
+// .itvsl.protocol.v1beta1.ShapeProto shape = 13;
 inline bool VideoFrame::has_shape() const {
   return this != internal_default_instance() && shape_ != NULL;
 }
@@ -1682,7 +1749,7 @@ inline void VideoFrame::set_allocated_shape(::itvsl::protocol::v1beta1::ShapePro
   // @@protoc_insertion_point(field_set_allocated:itvsl.protocol.v1beta1.VideoFrame.shape)
 }
 
-// string device_id = 12;
+// string device_id = 14;
 inline void VideoFrame::clear_device_id() {
   device_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -1735,7 +1802,7 @@ inline void VideoFrame::set_allocated_device_id(::std::string* device_id) {
   // @@protoc_insertion_point(field_set_allocated:itvsl.protocol.v1beta1.VideoFrame.device_id)
 }
 
-// int64 packet = 13;
+// int64 packet = 15;
 inline void VideoFrame::clear_packet() {
   packet_ = GOOGLE_LONGLONG(0);
 }
@@ -1749,7 +1816,7 @@ inline void VideoFrame::set_packet(::google::protobuf::int64 value) {
   // @@protoc_insertion_point(field_set:itvsl.protocol.v1beta1.VideoFrame.packet)
 }
 
-// int64 keyframe = 14;
+// int64 keyframe = 16;
 inline void VideoFrame::clear_keyframe() {
   keyframe_ = GOOGLE_LONGLONG(0);
 }
@@ -1763,7 +1830,7 @@ inline void VideoFrame::set_keyframe(::google::protobuf::int64 value) {
   // @@protoc_insertion_point(field_set:itvsl.protocol.v1beta1.VideoFrame.keyframe)
 }
 
-// bytes extradata = 15;
+// bytes extradata = 17;
 inline void VideoFrame::clear_extradata() {
   extradata_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -1816,7 +1883,7 @@ inline void VideoFrame::set_allocated_extradata(::std::string* extradata) {
   // @@protoc_insertion_point(field_set_allocated:itvsl.protocol.v1beta1.VideoFrame.extradata)
 }
 
-// string codec_name = 16;
+// string codec_name = 18;
 inline void VideoFrame::clear_codec_name() {
   codec_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -1869,7 +1936,7 @@ inline void VideoFrame::set_allocated_codec_name(::std::string* codec_name) {
   // @@protoc_insertion_point(field_set_allocated:itvsl.protocol.v1beta1.VideoFrame.codec_name)
 }
 
-// string pix_fmt = 17;
+// string pix_fmt = 19;
 inline void VideoFrame::clear_pix_fmt() {
   pix_fmt_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }

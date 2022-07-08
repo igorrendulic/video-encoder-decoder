@@ -23,6 +23,7 @@ extern "C"
 #include <inttypes.h>
 #include <libavutil/imgutils.h>
 #include <libavutil/parseutils.h>
+#include <hiredis/hiredis.h>
 #ifdef __cplusplus
 }
 #endif
@@ -129,6 +130,8 @@ namespace itvsl
         {
             StreamingContext *decodeStreamContext;
             StreamingContext *encodeStreamContext;
+            redisContext *redisConn;
+            redisReply *redReply;
 
         public:
             LibItvsl()
@@ -144,12 +147,12 @@ namespace itvsl
 
                 // TODO: instead of redis open fifo file for writing to it: check this; https://www.youtube.com/watch?v=2hba3etpoJg
 
-                // redisConn = redisConnect("localhost", 6379);
-                // if (redisConn->err)
-                // {
-                //     printf("Redis connection error: %s\n", redisConn->errstr);
-                //     exit(1);
-                // }
+                redisConn = redisConnect("localhost", 6379);
+                if (redisConn->err)
+                {
+                    printf("Redis connection error: %s\n", redisConn->errstr);
+                    exit(1);
+                }
             }
 
             StreamingContext *getDecodingContext();
@@ -218,7 +221,7 @@ namespace itvsl
                 free(encodeStreamContext);
                 encodeStreamContext = NULL;
 
-                // redisFree(redisConn);
+                redisFree(redisConn);
             }
         };
     } // namespace media

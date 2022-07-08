@@ -272,7 +272,11 @@ VideoFrame *LibItvsl::bgrToVideoFrame(AVPacket *pPacket, AVFrame *pFrame, AVFram
     dstFrame->set_is_keyframe(1);
     dstFrame->set_device_id(deviceID);
     dstFrame->set_allocated_shape(shape);
-    dstFrame->set_data(dst_data, rgb_size);
+    dstFrame->set_decoded_video_frame(dst_data, rgb_size);
+    // dstFrame->set_raw(dst_data, rgb_size);
+
+    CPacket *cPacket = itvslPacketize(pPacket);
+    dstFrame->set_allocated_avpacket(cPacket);
 
     // dstFrame.set_data(cptr, sizeof(bgrFrame->data));
     // dstFrame->set_pix_fmt(pt);
@@ -281,10 +285,9 @@ VideoFrame *LibItvsl::bgrToVideoFrame(AVPacket *pPacket, AVFrame *pFrame, AVFram
     char *buf = new char[len];
     dstFrame->SerializeToArray(buf, len);
 
-    // TODO: store to fifo pipe serialized protobuf file!
-    // redReply = (redisReply *)redisCommand(redisConn, "xadd %s MAXLEN ~ 10 * %s %b", deviceID, "data", buf, len);
-    // printf("KEY: %s\n", redReply->str);
-    // freeReplyObject(redReply);
+    redReply = (redisReply *)redisCommand(redisConn, "xadd %s MAXLEN ~ 10 * %s %b", deviceID, "data", buf, len);
+    printf("KEY: %s\n", redReply->str);
+    freeReplyObject(redReply);
 
     free(buf);
     free(dst_data);
